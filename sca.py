@@ -22,8 +22,10 @@ Options:
 For more info visit https://github.com/wvdongen/SCA
 '''
 
+
 def usage():
     print usage_doc
+
 
 def main():
     try:

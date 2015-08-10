@@ -125,7 +125,7 @@ class TestVulnerabilities(PyMockTestCase):
         analyzer = PhpSCA(code)
         sys1, echo, sys2 = analyzer.get_func_calls()
         self.assertEquals([], sys1.vulntypes)
-        self.assertTrue('XSS' in echo.vulntypes)
+        self.assertIn('XSS', echo.vulntypes)
         self.assertTrue('OS_COMMANDING' in sys2.vulntypes)
     
     def test_vuln_functions_5(self):
@@ -164,7 +164,7 @@ class TestVulnerabilities(PyMockTestCase):
         echo $a;
         ?>'''
         vulns = PhpSCA(code).get_vulns()
-        self.assertTrue('XSS' in vulns)
+        self.assertIn('XSS', vulns)
         self.assertTrue('SQL_INJECTION' in vulns)
         
     def test_multiple_parents_vuln_trace(self):
@@ -173,7 +173,7 @@ class TestVulnerabilities(PyMockTestCase):
         echo $_GET[2] . $a;
         ?>'''
         vulns = PhpSCA(code).get_vulns()
-        self.assertTrue('XSS' in vulns)
+        self.assertIn('XSS', vulns)
         self.assertEquals(2, len(vulns['XSS']))
         self.assertEquals(3, vulns['XSS'][0][-1].lineno)
         self.assertEquals(2, vulns['XSS'][1][-1].lineno)
@@ -185,5 +185,4 @@ class TestVulnerabilities(PyMockTestCase):
         echo $param;
         ?>'''
         vulns = PhpSCA(code).get_vulns()
-        self.assertTrue('XSS' in vulns)
-        
+        self.assertIn('XSS', vulns)

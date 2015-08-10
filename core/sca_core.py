@@ -25,6 +25,7 @@ import phply.phpast as phpast
 # pushing/popping the scopes from the stack. 
 Node = phpast.Node
 
+
 def accept(nodeinst, visitor):
     skip = visitor(nodeinst)  
     if skip:
@@ -175,4 +176,3 @@ class PhpSCA(object):
     def debug(self, newobj):
         if self.DEBUG and newobj:
             print newobj
-        
